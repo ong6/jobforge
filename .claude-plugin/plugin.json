@@ -1,0 +1,13 @@
+{
+  "name": "jobforge",
+  "displayName": "jobforge",
+  "description": "Grades the plan you say out loud, not the code you submit. A daily coding-interview drill that scores your stated approach against a required-elements checklist per pattern (recurrence stated? base case seeded? iteration order justified?), schedules on the element you missed, and feeds failures from interviews you actually sat back into the same queue. State is markdown in ~/jobforge. No telemetry.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Ong Jun Xiong"
+  },
+  "homepage": "https://github.com/ong6/jobforge",
+  "repository": "https://github.com/ong6/jobforge",
+  "license": "MIT",
+  "keywords": ["interview", "coding", "algorithms", "dsa", "spaced-repetition", "career", "system-design"]
+}

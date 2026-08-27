@@ -1,0 +1,13 @@
+{
+  "name": "jobforge",
+  "owner": {
+    "name": "Ong Jun Xiong"
+  },
+  "plugins": [
+    {
+      "name": "jobforge",
+      "source": "./",
+      "description": "Grades the plan you say out loud, not the code you submit."
+    }
+  ]
+}

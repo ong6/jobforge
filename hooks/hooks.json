@@ -1,0 +1,17 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"${CLAUDE_PLUGIN_ROOT}/hooks/drill-banner.py\"",
+            "timeout": 5,
+            "statusMessage": "Checking today's drill…"
+          }
+        ]
+      }
+    ]
+  }
+}
