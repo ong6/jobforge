@@ -1,0 +1,54 @@
+jobforge
+Copyright (c) 2026 Ong Jun Xiong
+Licensed under the MIT License (see LICENSE).
+
+------------------------------------------------------------------------------
+Derived content
+------------------------------------------------------------------------------
+
+Parts of this repository are derived from swe-interview-coach by kirilxd,
+https://github.com/kirilxd/swe-interview-coach, used under the MIT License:
+
+    MIT License
+
+    Copyright (c) 2026 kirilxd
+
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:
+
+    The above copyright notice and this permission notice shall be included in all
+    copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    SOFTWARE.
+
+Files derived from that project, each carrying its own attribution header:
+
+    content/system-design/*.md      the eight reference designs
+    scripts/harness/python_runner.py
+    scripts/run-solution.sh
+    scripts/canvas-server.js
+    scripts/ensure-canvas.sh
+    viewer/canvas.html
+
+Changes made: the eight reference designs have their `companies_known_to_ask`
+frontmatter removed. The harness reads `JOBFORGE_TIMEOUT_S` instead of
+`SWE_CODING_TIMEOUT_S`. The upstream `/coding-import` command and its fallback to
+the third-party `alfa-leetcode-api.onrender.com` mirror are not carried over, by
+design: no jobforge code path sends a user's requests through someone else's
+server.
+
+Not derived: the pattern taxonomy in content/patterns/ is written from scratch
+around a different organising idea (a falsifiable discriminator plus a
+required-elements checklist per pattern), and the plugin spine — hooks,
+scheduling, the bank, verbal-plan grading and the interview schema — has no
+upstream counterpart.
