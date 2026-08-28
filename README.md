@@ -118,9 +118,6 @@ MIT licensed, and remain the clearest treatment of behavioural and system-design
 Code plugin. Attribution is preserved per file and in [`NOTICE`](NOTICE). Behavioural and
 system-design rounds are that project's ground; if that is what you need, install it.
 
-Not carried over: its `/coding-import` fallback to a third-party API mirror, which routed a user's
-problem requests through someone else's server.
-
 The pattern taxonomy, the grading mechanism, the hooks, the bank and the interview schema are new
 here.
 
