@@ -3,9 +3,6 @@
 **Hard reps, easy job.** A Claude Code plugin that grades the plan you say out loud, not the code
 you submit.
 
-TODO(owner): personal voice paragraph goes here — why you built this, in your own words. Do not
-let an agent write it.
-
 ## What it grades
 
 Every mistake-classifier in this space fires on a rejected submission. That means none of them can
