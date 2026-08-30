@@ -3,6 +3,12 @@
 **Hard reps, easy job.** A Claude Code plugin that grades the plan you say out loud, not the code
 you submit.
 
+I built this mid-prep, with interviews on the calendar. My failure mode was never the submitted
+code — it was the first two minutes, where I'd say "I'll DP this" and start typing, and the
+question "which cells are seeded before the loop runs?" would find out live that I didn't know.
+Every practice tool I tried grades the part I was already fine at. This one grades the part that
+was failing.
+
 ## What it grades
 
 Every mistake-classifier in this space fires on a rejected submission. That means none of them can
