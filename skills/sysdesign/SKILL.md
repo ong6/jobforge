@@ -11,7 +11,8 @@ system-design rounds is better than anything this project would write from scrat
 credited rather than reimplemented.
 
 1. Pick a design, or take the one named.
-2. Start the canvas: `bash scripts/ensure-canvas.sh`. It binds localhost only. Override the port
+2. Start the canvas: `bash "${CLAUDE_PLUGIN_ROOT}/scripts/ensure-canvas.sh"` (the path is relative to
+   the plugin, not the working directory; pass `--no-browser` to skip opening a tab). It binds localhost only. Override the port
    with `JOBFORGE_CANVAS_PORT`. If node is missing, skip the canvas and run in text.
 3. Walk the design in the file's order: requirements, capacity, high-level, deep dives, tradeoffs.
    Stop at each section and ask before revealing.

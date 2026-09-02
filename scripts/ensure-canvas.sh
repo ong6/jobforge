@@ -13,7 +13,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 SERVER_JS="$SCRIPT_DIR/canvas-server.js"
 PORT="${JOBFORGE_CANVAS_PORT:-9999}"
 URL="http://localhost:${PORT}"
-LOG="/tmp/jobforge-canvas.log"
+LOG="${TMPDIR:-/tmp}/jobforge-canvas.log"
 
 mkdir -p "$CONFIG_DIR"
 [ -s "$CANVAS_JSON" ] || printf '{"elements":[],"appState":{}}' > "$CANVAS_JSON"

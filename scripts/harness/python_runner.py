@@ -16,7 +16,9 @@ TIMEOUT_S = float(os.environ.get("JOBFORGE_TIMEOUT_S", "5"))
 _REAL_STDOUT = sys.stdout
 
 
-class _Timeout(Exception):
+class _Timeout(BaseException):
+    # BaseException, not Exception: a candidate's `except Exception: pass` inside a
+    # loop must not be able to swallow the timeout and hang the harness forever.
     pass
 
 

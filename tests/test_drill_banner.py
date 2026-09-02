@@ -81,6 +81,14 @@ class Banner(unittest.TestCase):
         self.assertGreater(len(seen), 1)
 
 
+class Frontmatter(unittest.TestCase):
+    def test_quoted_target_date_still_parses(self):
+        """A YAML-quoted date used to fail fromisoformat and silently disable the target-date logic."""
+        text = log("| 2026-08-26 | 22 | 3 | dp |\n").replace("2026-10-15", '"2026-08-01"')
+        self.assertEqual(db.parse_frontmatter(text)["target_date"], "2026-08-01")
+        self.assertEqual(db.banner(text, AS_OF), "")
+
+
 class DayBoundary(unittest.TestCase):
     def test_two_am_belongs_to_previous_day(self):
         self.assertEqual(db.today(datetime.datetime(2026, 8, 27, 2, 0)), datetime.date(2026, 8, 26))

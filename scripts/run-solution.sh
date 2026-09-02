@@ -10,7 +10,20 @@ set -u
 HERE="$(cd "$(dirname "$0")" && pwd)"
 LANG_ID="${1:-}"; SOLUTION="${2:-}"; CASES="${3:-}"
 
-emit_err() { printf '{"passed":0,"total":0,"cases":[],"harness_error":"%s"}\n' "$1"; }
+emit_err() {
+  # Escape backslashes and double quotes so a path containing either stays valid JSON.
+  local msg; msg=$(printf '%s' "$1" | sed -e 's/\\/\\\\/g' -e 's/"/\\"/g')
+  printf '{"passed":0,"total":0,"cases":[],"harness_error":"%s"}\n' "$msg"
+}
+
+# Run an adapter; if it dies without printing its JSON line (segfault, OOM kill,
+# recursion crash in C) still emit a valid result instead of empty stdout.
+run_adapter() {
+  local out rc
+  out=$("$@"); rc=$?
+  if [ -n "$out" ]; then printf '%s\n' "$out"; exit "$rc"; fi
+  emit_err "adapter exited with status $rc and no output (crashed?)"; exit 1
+}
 
 { [ -n "$LANG_ID" ] && [ -n "$SOLUTION" ] && [ -n "$CASES" ]; } || {
   emit_err "usage: run-solution.sh <lang> <solution-file> <cases-file>"; exit 2; }
@@ -20,7 +33,7 @@ emit_err() { printf '{"passed":0,"total":0,"cases":[],"harness_error":"%s"}\n' "
 case "$LANG_ID" in
   python|python3|py)
     command -v python3 >/dev/null 2>&1 || { emit_err "python3 not found on PATH"; exit 3; }
-    exec python3 "$HERE/harness/python_runner.py" "$SOLUTION" "$CASES"
+    run_adapter python3 "$HERE/harness/python_runner.py" "$SOLUTION" "$CASES"
     ;;
   *)
     emit_err "unsupported language: $LANG_ID (jobforge v0 ships python only)"; exit 3

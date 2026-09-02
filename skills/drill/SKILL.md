@@ -62,8 +62,11 @@ Six rules, all enforced here:
 5. Never persist a paraphrase. Nothing generated is written to disk. The bank stores pattern,
    verdict, missing elements, due date and a note about the reasoning.
 6. If a reference solution is needed, write it fresh and run it through
-   [`../../scripts/run-solution.sh`](../../scripts/run-solution.sh). Standard algorithms are not
-   copyrightable; editorial prose is, and none is reproduced.
+   [`../../scripts/run-solution.sh`](../../scripts/run-solution.sh):
+   `bash "${CLAUDE_PLUGIN_ROOT}/scripts/run-solution.sh" python <solution.py> <cases.json>`, where
+   the cases file is `{"function": "<top-level fn>", "unordered": false, "cases": [{"args": [...],
+   "expected": ...}]}` and both files live in a temp dir, never in `$JOBFORGE_HOME`. Standard
+   algorithms are not copyrightable; editorial prose is, and none is reproduced.
 
 Then ask for the plan, in words, before any code:
 

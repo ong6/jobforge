@@ -62,7 +62,7 @@ def parse_frontmatter(text: str) -> dict:
     for line in text[3:end].splitlines():
         if ":" in line:
             k, _, v = line.partition(":")
-            out[k.strip()] = v.split("#")[0].strip()
+            out[k.strip()] = v.split("#")[0].strip().strip("'\"")
     return out
 
 
