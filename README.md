@@ -3,37 +3,37 @@
 **Hard reps, easy job.** A Claude Code plugin that grades the plan you say out loud, not the code
 you submit.
 
-I built this mid-prep, with interviews on the calendar. My failure mode was never the submitted
-code — it was the first two minutes, where I'd say "I'll DP this" and start typing, and the
-question "which cells are seeded before the loop runs?" would find out live that I didn't know.
-Every practice tool I tried grades the part I was already fine at. This one grades the part that
-was failing.
+I built this mid-prep, with interviews on the calendar. The submitted code was never my failure
+mode. The first two minutes were. I would say "I'll DP this" and start typing, and the question
+"which cells are seeded before the loop runs?" would find out live that I did not know. Every
+practice tool I tried grades the part I was already fine at. This one grades the part that was
+failing.
 
 ## What it grades
 
-Every mistake-classifier in this space fires on a rejected submission. That means none of them can
-fire when you wrote correct code for the wrong reason, and none of them has any notion of a plan you
-stated before typing.
+Every mistake-classifier in this space fires on a rejected submission. None of them can fire when
+you wrote correct code for the wrong reason, and none has any notion of a plan you stated before
+typing.
 
 jobforge asks for the plan first and grades that, against a required-elements checklist for the
 pattern:
 
 - Is the recurrence stated as a formula, or did you say "then I fill in the table"?
 - Which cells are seeded, with what value, before the loop runs?
-- Why that iteration order — what does each step need already computed?
+- Why that iteration order? What does each step need already computed?
 
-Each element is marked **present**, **vague**, or **missing**, and a mark of *present* requires a
-quotable span of your own words. "I'll build up the table" is a vague `transition`; it passes casual
+Each element is marked **present**, **vague**, or **missing**. A mark of *present* requires a
+quotable span of your own words. "I'll build up the table" is a vague `transition`. It passes casual
 listening, and it is the exact failure that shows up as a stall in an interview.
 
 The element you missed is what gets scheduled. Miss `base-case` and the next rep is a different
 pattern that also depends on seeding it, not the same problem again in three days.
 
-## Interviews you actually sat are data
+## Interviews you sat are data
 
-`/jobforge:interview-debrief` records a real interview as structured state: round, outcome, what was asked, which
-pattern each question wanted, and which elements broke. It uses the same element vocabulary as
-practice grading.
+`/jobforge:interview-debrief` records a real interview as structured state: round, outcome, what was
+asked, which pattern each question wanted, and which elements broke. It uses the same element
+vocabulary as practice grading.
 
 Every failed question is then appended to the review queue with a due date three days out, the same
 interval a failed practice rep gets. A question you lost an onsite to is better evidence than a
@@ -43,7 +43,7 @@ badly".
 ## One banner, one subject
 
 A SessionStart hook prints one line when you have not drilled today. It reads `rep-log.md` and
-nothing else — no code path to the resume, the target list, or the bank. That is enforced in
+nothing else. There is no code path to the resume, the target list, or the bank. That is enforced in
 [`tests/test_push_pull_boundary.py`](tests/test_push_pull_boundary.py), which fails the build if the
 hook learns a second filename.
 
@@ -53,14 +53,14 @@ instruction and becomes wallpaper. Everything else in this plugin waits to be as
 The banner is silent on a day you already logged, silent past your target date, and silent if you
 have not set it up.
 
-## What it does not try to be
+## What it is not
 
 - **A submission capture tool.** A browser extension sits at the moment you hit submit and can
   interrupt you. A CLI agent only exists when you invoke it. If you want your accepted submissions
-  auto-captured and FSRS-scheduled, use one of the extensions built for that; several are good.
+  auto-captured and FSRS-scheduled, use one of the extensions built for that. Several are good.
 - **A problem bank.** No problems ship with this repo. They are generated per session from a
   taxonomy entry, never from a problem title, and nothing generated is written to disk. The state
-  files hold a pattern, a verdict, an element id and a date — never a paraphrase.
+  files hold a pattern, a verdict, an element id and a date, never a paraphrase.
 - **A grader of your code.** The bundled Python harness runs your solution so you can check it. The
   grade comes from the plan.
 
@@ -71,7 +71,7 @@ have not set it up.
 /plugin install jobforge
 ```
 
-Then `/jobforge:setup`, which writes `~/jobforge/` from [`templates/`](templates/).
+Then run `/jobforge:setup`, which writes `~/jobforge/` from [`templates/`](templates/).
 
 ## Commands
 
@@ -87,15 +87,14 @@ Then `/jobforge:setup`, which writes `~/jobforge/` from [`templates/`](templates
 ## Your data
 
 Everything lives in `$JOBFORGE_HOME` (default `~/jobforge/`) as markdown you can read, edit and
-delete with `rm -rf`. Not in a plugin-private directory — you should be able to destroy this on the
-day you want it gone, without remembering a `--keep-data` flag.
+delete with `rm -rf`. It is not in a plugin-private directory. You should be able to destroy this on
+the day you want it gone, without remembering a `--keep-data` flag.
 
-No telemetry. There is no code in this plugin that sends anything anywhere, so there is no setting
-to turn off.
+No telemetry. No code in this plugin sends anything anywhere, so there is no setting to turn off.
 
-**If your employer manages this machine, put `JOBFORGE_HOME` on a personal volume.** Taken together,
-a resume, a target list, a departure date and a log of your technical weaknesses is a document that
-could cost you your current job. A tool that knows you are leaving owes you that sentence.
+**If your employer manages this machine, put `JOBFORGE_HOME` on a personal volume.** A resume, a
+target list, a departure date and a log of your technical weaknesses add up to a document that could
+cost you your current job. A tool that knows you are leaving owes you that warning.
 
 ## Tone
 
@@ -106,12 +105,12 @@ for it, which is why you have to ask.
 ## The constants are tunable and n=1
 
 Three-day and fourteen-day intervals, the twenty-minute floor, the 3am day boundary, Tier A before
-Tier B — all observed from one person's log over one job search, not derived from a study. They are
+Tier B: all observed from one person's log over one job search, not derived from a study. They are
 in `rep-log.md` frontmatter. Change them.
 
-Two of them are worth keeping as they are. The twenty-minute floor, because a recognition rep costs
-about a third of a solving rep per minute and that is what makes a bad day payable. And no make-up
-doubling: a missed day costs one rep, a doubled make-up target costs the next three.
+Two are worth keeping. The twenty-minute floor, because a recognition rep costs about a third of a
+solving rep per minute, and that is what makes a bad day payable. And no make-up doubling: a missed
+day costs one rep, a doubled make-up target costs the next three.
 
 ## Credit
 
@@ -138,3 +137,4 @@ Forges make things, packs bundle them.
 - [proofpack](https://github.com/ong6/proofpack) — pilot evidence, review proposals and customer-safe handovers
 - [fieldpack](https://github.com/ong6/fieldpack) — deckforge, skillforge and proofpack as one local-first suite
 - [skillpack](https://github.com/ong6/skillpack) — the Claude Code and Codex skills used across all of these
+- [uipack](https://github.com/ong6/uipack) — React and SVG figure components behind the diagrams on junxiong.dev
