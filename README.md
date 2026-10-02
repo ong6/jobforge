@@ -1,3 +1,6 @@
+> [!IMPORTANT]
+> **Archived on 2026-10-02.** This repository is read-only. jobforge is now the [`interview-prep`](https://github.com/ong6/skills/tree/main/skills/interview-prep) skill in [ong6/skills](https://github.com/ong6/skills), which carries its plan-first grading and pattern scheduling. The README below is kept as history.
+
 # 🔨 jobforge
 
 **Hard reps, easy job.** A Claude Code plugin that grades the plan you say out loud, not the code
